@@ -1,5 +1,5 @@
 # Welcome to the SuperDataScience Community Project!
-Welcome to the California Housing Prediction repository! 🎉
+Welcome to the AI Text Based Adventure Game repository! 🎉
 
 This project is a collaborative initiative brought to you by SuperDataScience, a thriving community dedicated to advancing the fields of data science, machine learning, and AI. We are excited to have you join us in this journey of learning, experimentation, and growth.
 
@@ -8,21 +8,20 @@ In this repository, you’ll find the work carried out by our community members 
 
 ## Project Objectives
 
-**Link to Dataset:**
+Build an app which uses an LLM to generate an adventure game which generates a narrative based on the users responses.
 
 ## Project Phases & Timeline
 
-**Data Cleaning & Analysis (Week 1)**
-- Handling null values, fixing data types, data inconsistencies
-- EDA, understanding distributions, outliers, relationships of features with target variable
-- Correlation analysis
+**Prompting LLM (Week 1)**
+- Use Open AI/Huggingface API to call an LLM
+- Test prompting the LLM with example job description and CVs
 
-**Feature Engineering & Model Selection (Week 2 & 3)**
-- Building new features, one hot encoding, feature scaling
-- Handling outliers through statistical and heuristic methods
-- Normalisation or Standardisation of input features is the ML algorithm in the pipeline requires it
+**Chaining Chats (Week 2)**
+- Use Langchain to keep a chat history and ask for user responses
+- Finetune the AI and prompts
+- Test fine tuned model
 
 **Deployment (Week 4)**
-- Building a streamlit app
-- Deploying model to app
-- Deploying app to streamlit cloud
+- Build a streamlit interface
+- Deploy model to streamlit
+- Deploy app to streamlit cloud
