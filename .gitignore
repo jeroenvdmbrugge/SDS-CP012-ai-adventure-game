@@ -1,3 +1,5 @@
 # Include any environment files
 .ipynb_checkpoints
 .DS_Store
+.env
+aiadventuregame/
