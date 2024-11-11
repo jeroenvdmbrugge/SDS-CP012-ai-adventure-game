@@ -1,6 +1,6 @@
 from langchain_openai import ChatOpenAI
 from typing import Optional, Any, List, Dict, ClassVar
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, SecretStr
 import os
 from tenacity import retry, stop_after_attempt, wait_exponential
 import logging
@@ -13,7 +13,7 @@ logging.basicConfig(
 
 class OpenRouterConfig(BaseModel):
     """Configuration for OpenRouter API."""
-    api_key: str = Field(..., description="OpenRouter API key")
+    api_key: SecretStr = Field(..., description="OpenRouter API key")
     base_url: str = Field(
         default="https://openrouter.ai/api/v1",
         description="OpenRouter API base URL"
@@ -50,8 +50,11 @@ class ChatOpenRouter(ChatOpenAI):
         **kwargs: Any
     ):
         # Initialize configuration
+        if not (openai_api_key or os.getenv('OPENROUTER_API_KEY')):
+            raise ValueError("API key must be provided either through openai_api_key parameter or OPENROUTER_API_KEY environment variable")
+            
         router_config = config or OpenRouterConfig(
-            api_key=openai_api_key or os.getenv('OPENROUTER_API_KEY'),
+            api_key=SecretStr(openai_api_key or os.getenv('OPENROUTER_API_KEY') or ""),  # Add fallback empty string
             base_url=openai_api_base
         )
         
@@ -59,9 +62,9 @@ class ChatOpenRouter(ChatOpenAI):
         
         # Initialize parent class with router config values
         super().__init__(
-            model_name=model_name,
-            openai_api_base=router_config.base_url,
-            openai_api_key=router_config.api_key,
+            model=model_name,
+            base_url=router_config.base_url,
+            api_key=router_config.api_key,
             timeout=router_config.timeout,
             **kwargs
         )
@@ -81,7 +84,7 @@ class ChatOpenRouter(ChatOpenAI):
         stop=stop_after_attempt(3),
         wait=wait_exponential(multiplier=1, min=4, max=10)
     )
-    async def agenerate_with_retry(self, messages: List[BaseMessage], *args, **kwargs) -> Any:
+    async def agenerate_with_retry(self, messages: List[List[BaseMessage]], *args, **kwargs) -> Any:
         """Async generation with retry logic and message conversion."""
         try:
         # Ensure messages are list of BaseMessage

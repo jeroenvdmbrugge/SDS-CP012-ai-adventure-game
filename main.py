@@ -5,6 +5,8 @@ import os
 from utils.config import load_environment_variables, get_api_key
 import logging
 from pathlib import Path
+from typing import List
+from langchain.schema import BaseMessage
 
 async def main():
     # Load environment variables
@@ -26,20 +28,22 @@ async def main():
     )
     
     # Initialize message history with LangChain message types directly
-    messages = [
-        SystemMessage(content=prompt_content),
-        HumanMessage(content="Start a new adventure story")
+    messages : List[List[BaseMessage]] = [
+        [
+            SystemMessage(content=prompt_content),
+            HumanMessage(content="Start a new adventure story")
+        ]
     ]
-    
+
     try:
         while True:
             # Generate story continuation
-            response = await storyteller.agenerate_with_retry(messages=[messages])
+            response = await storyteller.agenerate_with_retry(messages=messages)
             story_text = response.generations[0][0].text
             print("\n" + story_text + "\n")
             
             # Add AI response to message history
-            messages.append(AIMessage(content=story_text))
+            messages.append([AIMessage(content=story_text)])
             
             # Get player input
             user_input = input("What would you like to do? (or type 'quit' to end): ")
@@ -49,7 +53,7 @@ async def main():
                 break
             
             # Add user input to message history
-            messages.append(HumanMessage(content=user_input))
+            messages.append([HumanMessage(content=user_input)])
             
             # Maintain conversation history (keep last 6 messages to avoid token limits)
             if len(messages) > 6:

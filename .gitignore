@@ -3,3 +3,8 @@
 .DS_Store
 .env
 aiadventuregame/
+# venv folders
+langchain/
+
+# __pycache__ folders
+__pycache__/
