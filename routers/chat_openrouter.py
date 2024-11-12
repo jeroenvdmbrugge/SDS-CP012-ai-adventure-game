@@ -5,6 +5,7 @@ import os
 from tenacity import retry, stop_after_attempt, wait_exponential
 import logging
 from langchain.schema import BaseMessage, SystemMessage, HumanMessage, AIMessage
+from .base_chat_provider import BaseChatProvider
 
 logging.basicConfig(
     level=logging.INFO,
@@ -14,7 +15,7 @@ logging.basicConfig(
 class OpenRouterConfig(BaseModel):
     """Configuration for OpenRouter API."""
     api_key: SecretStr = Field(..., description="OpenRouter API key")
-    base_url: str = Field(
+    base_url: str | None = Field(
         default="https://openrouter.ai/api/v1",
         description="OpenRouter API base URL"
     )
@@ -30,7 +31,7 @@ class OpenRouterConfig(BaseModel):
         gt=0  # Must be > 0
     )
 
-class ChatOpenRouter(ChatOpenAI):
+class ChatOpenRouter(BaseChatProvider, ChatOpenAI):
     """Enhanced ChatOpenAI class for OpenRouter integration"""
     
     SUPPORTED_MODELS: ClassVar[List[str]] = [
@@ -38,24 +39,24 @@ class ChatOpenRouter(ChatOpenAI):
         "liquid/lfm-40b:free",
         "nousresearch/hermes-3-llama-3.1-405b:free",
         "meta-llama/llama-3.1-405b-instruct:free",
-        "gryphe/mythomax-l2-13b:free"
+        "gryphe/mythomax-l2-13b:free",
     ]
 
     def __init__(
         self,
         model_name: str,
-        openai_api_key: Optional[str] = None,
-        openai_api_base: str = "https://openrouter.ai/api/v1",
+        api_key: Optional[SecretStr] = None,
+        base_url: str | None = "https://openrouter.ai/api/v1",
         config: Optional[OpenRouterConfig] = None,
         **kwargs: Any
     ):
         # Initialize configuration
-        if not (openai_api_key or os.getenv('OPENROUTER_API_KEY')):
-            raise ValueError("API key must be provided either through openai_api_key parameter or OPENROUTER_API_KEY environment variable")
+        if not (api_key or os.getenv('OPENROUTER_API_KEY')):
+            raise ValueError("API key must be provided either through api_key parameter or OPENROUTER_API_KEY environment variable")
             
         router_config = config or OpenRouterConfig(
-            api_key=SecretStr(openai_api_key or os.getenv('OPENROUTER_API_KEY') or ""),  # Add fallback empty string
-            base_url=openai_api_base
+            api_key=api_key or SecretStr(os.getenv('OPENROUTER_API_KEY') or ""), 
+            base_url=base_url
         )
         
         self._validate_model(model_name)
@@ -121,7 +122,7 @@ class ChatOpenRouter(ChatOpenAI):
 
     def update_config(self, **kwargs) -> None:
         """Update configuration parameters."""
-        valid_keys = set(self._router_config.__fields__.keys())
+        valid_keys = set(self._router_config.model_fields.keys())
         invalid_keys = set(kwargs.keys()) - valid_keys
         
         if invalid_keys:
