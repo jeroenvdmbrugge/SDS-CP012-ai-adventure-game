@@ -19,7 +19,7 @@ class ChatConfig:
     """Configuration class for chat parameters"""
     def __init__(self, 
                  provider: ChatProvider = ChatProvider.OPENROUTER,
-                 openrouter_model: str = "liquid/lfm-40b:free",
+                 openrouter_model: str = "gryphe/mythomax-l2-13b:free",
                  openai_model: str = "gpt-4o-mini",
                  system_prompt_path: str = "templates/system_prompt.md",
                  max_history: int = 6):
@@ -52,7 +52,7 @@ async def main():
     
     # Initialize configuration (can be modified or loaded from config file)
     config = ChatConfig(
-        provider=ChatProvider.OPENAI,
+        provider=ChatProvider.OPENROUTER,
         system_prompt_path="templates/system_prompt.md",
         max_history=10
     )
@@ -71,32 +71,48 @@ async def main():
         api_key=api_key
     )
     
-    # Read system prompt from markdown file
+    # Read system prompt and character setup prompts
     prompt_path = Path(config.system_prompt_path)
+    character_setup_path = Path("templates/character_setting_setup.md")
+    
     try:
         with open(prompt_path, "r", encoding="utf-8") as f:
-            prompt_content = f.read().strip()
-    except FileNotFoundError:
-        logging.error(f"Prompt file not found: {prompt_path}")
+            system_prompt = f.read().strip()
+        with open(character_setup_path, "r", encoding="utf-8") as f:
+            character_setup_prompt = f.read().strip()
+    except FileNotFoundError as e:
+        logging.error(f"Prompt file not found: {e.filename}")
         raise
-    
-    # Initialize message history with LangChain message types directly
-    messages : List[List[BaseMessage]] = [
-        [
-            SystemMessage(content=prompt_content),
-            HumanMessage(content="Start a new adventure story!")
-        ]
+
+    # Initialize message history with system prompt
+    messages: List[BaseMessage] = [
+        SystemMessage(content=system_prompt),
+        HumanMessage(content=character_setup_prompt)
     ]
+
+    # Get character and setting options
+    options_response = storyteller.invoke(messages)
+    options_text = options_response.content
+    print("\n=== Character and Setting Options ===")
+    print(options_text)
+    messages.append(AIMessage(content=options_text))
+
+    # Get user's selection
+    user_selection = input("Please choose a character and setting from the options above: ")
+    messages.append(HumanMessage(content=user_selection))
+
+    # Now start the adventure
+    messages.append(HumanMessage(content="Start the adventure with the selected character and setting!"))
 
     try:
         while True:
             # Generate story continuation
-            response = await storyteller.agenerate_with_retry(messages=messages)
-            story_text = response.generations[0][0].text
-            print("\n" + story_text + "\n")
+            response = storyteller.invoke(messages)
+            story_text = response.content
+            print(story_text)
             
             # Add AI response to message history
-            messages.append([AIMessage(content=story_text)])
+            messages.append(AIMessage(content=story_text))
             
             # Get player input
             user_input = input("What would you like to do? (or type 'quit' to end): ")
@@ -106,15 +122,15 @@ async def main():
                 break
             
             # Add user input to message history
-            messages.append([HumanMessage(content=user_input)])
+            messages.append(HumanMessage(content=user_input))
             
             # Maintain conversation history
             if len(messages) > config.max_history:
                 messages = [messages[0]] + messages[-(config.max_history-1):]
-                
+    
     except Exception as e:
         print(f"An error occurred: {e}")
         logging.error(f"Error in main loop: {str(e)}", exc_info=True)
 
 if __name__ == "__main__":
-    asyncio.run(main()) 
+    asyncio.run(main())

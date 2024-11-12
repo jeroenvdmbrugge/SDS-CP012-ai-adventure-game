@@ -115,11 +115,6 @@ class ChatOpenRouter(BaseChatProvider, ChatOpenAI):
             "max_retries": self._router_config.max_retries
         }
 
-    @classmethod
-    def list_supported_models(cls) -> List[str]:
-        """Return list of supported models"""
-        return cls.SUPPORTED_MODELS
-
     def update_config(self, **kwargs) -> None:
         """Update configuration parameters."""
         valid_keys = set(self._router_config.model_fields.keys())
