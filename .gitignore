@@ -1,5 +1,13 @@
-# Include any environment files
+# Environment files
+.env
 .ipynb_checkpoints
 .DS_Store
-.env
+
+# Project directories
 aiadventuregame/
+langchain/
+
+# Temporary files and folders
+__pycache__/
+.vscode/
+test.ipynb
