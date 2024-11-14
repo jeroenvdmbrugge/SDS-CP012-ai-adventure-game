@@ -1,6 +1,6 @@
 from enum import Enum
 from pydantic import SecretStr
-from utils.config import get_api_key
+from utils.utils import get_api_key
 from routers.chat_openai import ChatOpenAIProvider
 from routers.chat_openrouter import ChatOpenRouter
 

@@ -1,5 +1,5 @@
 import asyncio
-from utils.config import load_environment_variables
+from utils.utils import load_environment_variables
 from src.config import ChatConfig, ChatProvider
 from src.game_engine import GameEngine
 
@@ -9,7 +9,7 @@ async def main():
     
     # Initialize configuration
     config = ChatConfig(
-        provider=ChatProvider.OPENROUTER,
+        provider=ChatProvider.OPENROUTER, # can choose between OPENAI and OPENROUTER 
         system_prompt_path="templates/system_prompt.md",
         max_history=10
     )
