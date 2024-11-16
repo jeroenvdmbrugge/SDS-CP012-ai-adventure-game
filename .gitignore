@@ -1,8 +1,9 @@
 # Environment files
-notebooks/jeroenvdmbrugge/.env
+.env
 .ipynb_checkpoints
 .DS_Store
 .venv
+.idea
 
 # Project directories
 aiadventuregame/
