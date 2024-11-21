@@ -1,0 +1,62 @@
+PS C:\Data Science\SDSCollaborativeProjects\SDS-CP012-ai-adventure-game> & "c:/Data Science/SDSCollaborativeProjects/SDS-CP012-ai-adventure-game/.venv/Scripts/python.exe" "c:/Data Science/SDSCollaborativeProjects/SDS-CP012-ai-adventure-game/notebooks/lisha-eapen/langchain-textbasedadventuregame.py"
+Welcome to the Fantasy Adventure Game!
+You are embarking on a unique journey where your choices shape the story.
+
+Describe your next action or decision, and the Dungeon Master will guide your journey.
+Enter your action (or type 'end' to conclude your adventure): i chose to keep my word and be graceful and diplomatic
+As you stand before the menacing dragon, you take a deep breath and calm your racing heart. You remember the promise you made to be graceful and diplomatic, and you steel yourself for what lies ahead.
+
+The dragon's eyes narrow as it regards you, its massive form coiled and ready to strike at a moment's notice. But instead of aggression, you see a flicker of curiosity in its gaze.   
+
+"I have come to fulfill my end of the bargain," you say, your voice steady and unwavering. "I offer you this tribute as a token of our peaceful intentions."
+
+With a practiced hand, you produce the treasure you had promised, laying it at the dragon's feet. The creature's eyes widen in surprise, and for a moment, you see a glimmer of gratitude in its gaze.
+
+The dragon lets out a rumbling laugh, a sound that shakes the ground beneath your feet. "You are unlike any mortal I have encountered before," it says, its voice deep and resonant. "Your courage and honor are commendable."
+
+With a graceful sweep of its wings, the dragon rises into the air, circling above you in a display of power and majesty. "Go now, mortal," it says, its voice echoing through the cavern. "You have earned my respect, and I shall honor our agreement."
+
+As you watch the dragon disappear into the shadows, you feel a sense of pride and accomplishment wash over you. You have proven that diplomacy and grace can prevail even in the face of danger, and you know that your reputation as a skilled negotiator will spread far and wide throughout the land. You leave the dragon's lair with your head held high, ready to face whatever challenges lie ahead.
+
+Describe your next action or decision, and the Dungeon Master will guide your journey.
+Enter your action (or type 'end' to conclude your adventure): i want to master skills for challenges that lie ahead
+As you stand in the bustling city square, the sun beating down on your determined face, you feel a surge of energy coursing through your veins. The desire to conquer the challenges that lie ahead burns brightly in your heart, pushing you to seek out the training and knowledge needed to become a master of your craft.
+
+You begin your journey by seeking out the most renowned trainers and mentors in the land, traveling far and wide in search of the wisdom and skills they possess. From the misty mountains to the sweltering deserts, you push yourself to the limit, honing your abilities and pushing past your limits with each passing day.
+
+Under the watchful eye of your mentors, you train tirelessly, mastering new techniques and perfecting your skills. The sweat drips down your brow as you push yourself to the brink of 
+exhaustion, each day bringing you closer to your goal of becoming a true master.
+
+As the weeks turn into months, you feel a profound shift within yourself. Your movements become fluid and precise, your mind sharp and focused. You can feel the power coursing through your body, ready to be unleashed upon the challenges that await you.
+
+Finally, the day arrives when your mentors deem you ready. With a sense of pride and determination, you set out on your next adventure, confident in your abilities and ready to face whatever challenges come your way.
+
+And as you stand at the threshold of the unknown, a smile plays on your lips. You are a master of your craft, prepared for whatever lies ahead. The world is yours for the taking, and 
+you are ready to conquer it all.
+
+Describe your next action or decision, and the Dungeon Master will guide your journey.
+Enter your action (or type 'end' to conclude your adventure): Love conquers all with attention and compassion
+The player's heart swells with love as they focus their attention and compassion on their companions and allies. The air around them seems to shimmer with a warm, golden light, and a 
+sense of peace and unity fills the room.
+
+Their gestures of love and kindness have a powerful effect on those around them. The wounded warrior's wounds begin to heal, the frightened mage finds new courage, and the downtrodden rogue stands a little taller. The power of love and compassion is palpable, weaving a protective cocoon around the party.
+
+As they continue to show love and kindness to those they meet on their journey, the world around them seems to shift and change. Bridges are mended, enemies become allies, and even the darkest corners of the dungeon seem a little less menacing.
+
+Their love and compassion become a beacon of hope in a world filled with darkness and despair. Their enemies are taken aback by the power of their love, their hearts softened and their resolve weakened.
+
+In the end, it is not swords or spells that save the day, but the simple power of love and compassion. The player's actions have brought peace and harmony to the land, and their name 
+will be remembered for generations to come as a hero whose love conquered all.
+
+Describe your next action or decision, and the Dungeon Master will guide your journey.
+Enter your action (or type 'end' to conclude your adventure): end
+
+You have chosen to end your journey.
+Summarizing your adventure...
+
+In a world filled with challenges and adversities, one player stood out for their unwavering commitment to honor and diplomacy. Through their actions, they not only upheld their word 
+but also navigated through obstacles with grace and tact. Their determination to master skills for the challenges ahead set them apart as a formidable force to be reckoned with.      
+
+But amidst the trials and tribulations, it was their unwavering belief in the power of love and compassion that truly set them apart. With attention to detail and a heart full of empathy, they conquered all obstacles that came their way.
+
+As they continued on their adventure, their actions inspired others to follow in their footsteps, creating a ripple effect of positivity and hope. In the end, it was not just their skills and abilities that led them to victory, but their unwavering commitment to kindness and understanding.
