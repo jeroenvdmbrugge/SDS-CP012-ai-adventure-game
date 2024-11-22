@@ -8,8 +8,11 @@
 # Project directories
 aiadventuregame/
 langchain/
+plans/
 
 # Temporary files and folders
 __pycache__/
 .vscode/
 test.ipynb
+
+
