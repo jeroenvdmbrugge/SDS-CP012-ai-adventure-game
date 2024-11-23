@@ -16,4 +16,6 @@ __pycache__/
 .pytest_cache/
 test.ipynb
 
+# log files
+*.log
 
