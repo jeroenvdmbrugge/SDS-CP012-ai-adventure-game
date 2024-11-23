@@ -1,14 +1,15 @@
-# Environment files    
-.env       
-.ipynb_checkpoints   
-.DS_Store             
-.venv               
-.idea                 
+# Environment files     <- These are comments explaining each section
+.env                   <- Ignores the file containing your API keys
+.ipynb_checkpoints     <- Jupyter notebook checkpoint files
+.DS_Store              <- Mac OS system files
+.venv                  <- Virtual environment folder
+.idea                  <- PyCharm IDE settings folder
 
 # Project directories
-__pycache__/         
-.vscode/            
-test.ipynb           
+__pycache__/          <- Python cache files
+.vscode/              <- VS Code settings folder
+test.ipynb            <- Any test Jupyter notebooks
+
 # MacOS specific
-.DS_Store            
-*.pyc               
+.DS_Store             <- Listed again for clarity
+*.pyc                 <- Any Python compiled files
