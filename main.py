@@ -9,7 +9,7 @@ async def main():
     
     # Initialize configuration
     config = ChatConfig(
-        provider=ChatProvider.OPENROUTER, # can choose between OPENAI and OPENROUTER 
+        provider=ChatProvider.OPENAI, # can choose between OPENAI and OPENROUTER 
         system_prompt_path="templates/system_prompt.md",
         max_history=10
     )

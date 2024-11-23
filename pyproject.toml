@@ -1,0 +1,20 @@
+[project]
+name = "SDS-CP012-ai-adventure-game"
+version = "0.1.0"
+requires-python = ">=3.8"
+dependencies = [
+    "streamlit",
+    "langchain",
+    "pydantic",
+    "langchain-core"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+pythonpath = "."
+
+[tool.hatch.build.targets.wheel]
+packages = ["src", "web-app"]
