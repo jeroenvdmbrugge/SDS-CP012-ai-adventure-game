@@ -7,8 +7,7 @@
 
 __pycache__/        
 .vscode/            
-test.ipynb          
+test.ipynb   
 
-# MacOS specific
 .DS_Store           
 *.pyc              

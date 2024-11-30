@@ -1,5 +1,5 @@
 from anthropic import Anthropic
-from config import config
+from notebooks.magid_bugazia.config import config
 from typing import List, Dict
 
 class AdventureGame:
